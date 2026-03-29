@@ -19,3 +19,27 @@ module "west_europe_hub" {
   er_gateway_name     = "westeurope_er_gateway"
   vpn_gateway_name    = "westeurope_vpn_gateway"
 }
+
+module "er_circuit_dallas" {
+  source = "../../modules/expressroute-circuit"
+  # dallas-specific vars
+  routing_weight = 100
+}
+
+module "er_circuit_london" {
+  source = "../../modules/expressroute-circuit"
+  # london-specific vars
+  routing_weight = 100
+}
+
+module "vpn_connection_dallas" {
+  source = "../../modules/vpn-connection"
+  # dallas-specific vars
+  routing_weight = 0
+}
+
+module "vpn_connection_london" {
+  source = "../../modules/vpn-connection"
+  # london-specific vars
+  routing_weight = 0
+}
